@@ -24,7 +24,7 @@ p {
   }
     .annotation ul li, .annotation ol li {
       font-size: 14px;
-      line-height: 18px;
+      line-height: 22px;
       margin: 10px 0;
     }
 
@@ -184,6 +184,10 @@ ul.sections > li > div {
     font-size: 14px;
     padding: 0 0.2em;
   }
+
+  #searchBox{
+    margin: 0 20px 0 20px;
+  }
 }
 
 /*----------------------  (> 481px) ---------------------*/
@@ -211,9 +215,9 @@ ul.sections > li > div {
   }
 
   #searchBox{
-    width:150px;
+    width:260px;
     padding:20px 0 0 20px;
-    margin: 0 25px 0 50px;
+    margin: 0 20px 0 20px;
   }
 
   ul.sections > li > div.annotation ul, ul.sections > li > div.annotation ol {
@@ -229,8 +233,8 @@ ul.sections > li > div {
   }
 
   ul.sections > li > div.annotation {
-    max-width: 320px;
-    min-width: 320px;
+    max-width: 270px;
+    min-width: 270px;
     min-height: 5px;
     padding: 13px;
     overflow-x: hidden;
@@ -288,8 +292,8 @@ ul.sections > li > div {
     width:510px;
   }
   ul.sections > li > div.annotation {
-    max-width: 600px;
-    min-width: 600px;
+    max-width: 510px;
+    min-width: 510px;
     padding: 10px 25px 1px 0;
   }
   ul.sections > li > div.content {

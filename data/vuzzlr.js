@@ -26,45 +26,26 @@ for(var i=0; i<files.length; i++){
 	template = _.template(fs.readFileSync(template).toString());
 
 	var sections = Docco.parse(null, data.toString(), config);
-	var keys = {}, text = '', words = [], heap = [];
+	var keys = {}, text = '', words = [];
 	sections.forEach(function(section){
-		//console.log(section);
+
 		var words = section.docsText.match(/[a-zA-Z]+/g);
 		if(!words) return;
 		words.forEach(function(word){
-			if(word.length <= 2 || (["the", "then", "that", "which"].indexOf(word) != -1)) return;
 			word = word.toLowerCase();
+			if(word.length <= 2 || (["the", "then", "that", "which", "and", "div", "class", "let", "for", "with", "each"].indexOf(word) !== -1)) return;
+
 			if(keys.hasOwnProperty(word))
 				keys[word]++;
 			else
 				keys[word] = 1;
-
-			var heapid = heap.indexOf(word);
-			if(heapid == -1){
-
-				if(heap.length < 4){
-					heapid = 0;
-					while(heap.length > 0 && keys[word] > heap[heapid]) heapid++;
-					heap.splice(heapid, 0, word);					
-				}
-				else if (keys[word] > heap[0]){
-					heap.splice(0,1);
-					heapid = 0;
-					while(heap.length > 0 && keys[word] > heap[heapid]) heapid++;
-					heap.splice(heapid, 0, word);	
-				}
-
-			}
-			else{
-				heap.splice(heapid, 1);
-				while(keys[word] > heap[heapid]) heapid++;
-				heap.splice(heapid, 0, word);
-			}
-			console.log(word, heap);
-
 		});
 	});
-	mapItem.k = heap;
+
+	var sortedWords = Object.keys(keys).sort(function(a,b){
+		return keys[b] - keys[a];
+	});
+	mapItem.k = sortedWords.slice(0,4);
 
 
 	Docco.format('./src/' + file, sections, config);
@@ -88,9 +69,8 @@ for(var i=0; i<files.length; i++){
       destination: destination
     }); 
 
-    console.log("Building: " + file + " -> " + (destination(file)));
+    console.log("Vuzld: " + file + " -> " + (destination(file)));
     fs.writeFileSync(destination(file), html);
 }
-console.log(map);
 map["questions"].sort();
 fs.writeFileSync('map.json', JSON.stringify(map));
