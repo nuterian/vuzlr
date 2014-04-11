@@ -1,0 +1,106 @@
+<ul class="sections">
+    
+    
+    
+    <li id="section-1">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          <h1 id="find-an-element-in-a-sorted-array-that-is-rotated-by-an-unknown-number-">Find an Element in a Sorted Array that is Rotated by an Unknown Number.</h1>
+<p><div class="question-item">
+Given a sorted array of n integers that has been rotated an unknown number of times, write code to find an element in the array. You may assume that the array was originally sorted in increasing order.<br></div>
+<br/></p>
+<h2 id="example">Example</h2>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">var</span> Array1 = {<span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>}
+<span class="hljs-keyword">var</span> Array2 = {<span class="hljs-number">50</span>, <span class="hljs-number">5</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>}</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-2">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <p>Both have a midpoint of <code>20</code>. <br/>
+In <code>Array1</code>, since <code>10 &lt; 20</code>, the left half must be ordered normally. <br/>
+In <code>Array2</code>, since <code>50 &gt; 20</code>, the right half must be ordered normally. <br/></p>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-3">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <p>Special Case: </p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Array3 = {<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>}</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-4">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-4">&#182;</a>
+          </div>
+          <p>In this case the <em>middle</em> is same as both <em>left</em> and <em>right</em></p>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-5">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-5">&#182;</a>
+          </div>
+          <ol>
+<li>First, detect which side is ordered normally (in increasing order) by checking the middle element with the edge elements:</li>
+<li>If <code>left &lt; mid</code>, the <em>Left half</em> is ordered normally.</li>
+<li>Else If <code>right &gt; mid</code>, the <em>Right half</em> is ordered normally.</li>
+<li>Next, we check whether the given number can lie within the normally ordered half, if not we search the other half.</li>
+<li>For the <em>Left Half</em>, If <code>x &gt;= left</code> and <code>x &lt;= mid</code>, Search <em>Left</em>, Else Search <em>Right</em> </li>
+<li>For the <em>Right Half</em>, If <code>x &lt;= right</code> and <code>x &gt;= mid</code>, Search <em>Right</em>, Else Search <em>Left</em></li>
+<li>Special Case: If <em>Left half</em> has all repeats, i.e., <code>left == mid</code>, then:</li>
+<li>If <code>mid != right</code>, Search <em>Right</em>.</li>
+<li>Else, Search both <em>Left</em> and <em>Right</em>.</li>
+</ol>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-6">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-6">&#182;</a>
+          </div>
+          <h3 id="complexity">Complexity</h3>
+<p>If all elements are unique, this will run in <code>O(log n)</code>, since at every step we will be reducing the search array by half. <br/>
+However with many duplicates, the algorithm will take <code>O(n)</code> time since we’ll have to often search both halves.</p>
+
+        </div>
+        
+    </li>
+    
+</ul>

@@ -1,0 +1,193 @@
+<ul class="sections">
+    
+    
+    
+    <li id="section-1">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          <h1 id="square-root-of-x">Square root of X</h1>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-2">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <p>Find the square root of a number using basic arithmetic operations<br/></p>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-3">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <h2 id="babylonian-method">Babylonian Method</h2>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">var</span> squareRoot = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(n)</span>{</span></pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-4">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-4">&#182;</a>
+          </div>
+          <p>Start with an arbitrary positive start value x (the closer to the root, the better).</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> x = n,</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-5">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-5">&#182;</a>
+          </div>
+          <p>Initialize <code>y = 1</code>.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>		y = <span class="hljs-number">1</span>,
+		e = <span class="hljs-number">0.00001</span>;</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-6">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-6">&#182;</a>
+          </div>
+          <p>Do following until desired approximation is achieved.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">while</span>(x - y &gt; e){</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-7">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <p>Get the next approximation for root using average of x and y</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>		x = (x+y)/<span class="hljs-number">2</span>;</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-8">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-8">&#182;</a>
+          </div>
+          <p>Set <code>y = n/x</code></p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>		y = n/x;
+	}
+	<span class="hljs-keyword">return</span> x;
+}</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-9">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-9">&#182;</a>
+          </div>
+          <h2 id="newton-raphson-s-method">Newton-Raphson’s Method</h2>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> squareRoot = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(x)</span>
+{</span></pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-10">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-10">&#182;</a>
+          </div>
+          <p>Find the midpoint of x</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> g = x/<span class="hljs-number">2</span>;</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-11">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-11">&#182;</a>
+          </div>
+          <p>e is the approximation </p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> e = <span class="hljs-number">0.0001</span>;
+	<span class="hljs-keyword">while</span>(e &lt; <span class="hljs-built_in">Math</span>.abs(g*g-x)){</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-12">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-12">&#182;</a>
+          </div>
+          <p>Approximate g</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>		g = (g + x/g)/<span class="hljs-number">2</span>;
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.round(g/e)*e;
+}
+
+
+console.log(squareRoot(<span class="hljs-number">5</span>));</pre></div></div>
+        
+    </li>
+    
+</ul>

@@ -1,0 +1,91 @@
+<ul class="sections">
+    
+    
+    
+    <li id="section-1">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          <h1 id="magic-index">Magic Index</h1>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>
+(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span></pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-2">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <h2 id="distinct-array-elements">Distinct Array elements</h2>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> arr = [-<span class="hljs-number">40</span>, -<span class="hljs-number">20</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>];
+
+	<span class="hljs-keyword">var</span> checkMagic = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(start, end, arr)</span>{</span>
+
+		<span class="hljs-keyword">while</span>(start &lt;= end){
+			<span class="hljs-keyword">var</span> mid = <span class="hljs-built_in">Math</span>.floor((start+end)/<span class="hljs-number">2</span>);
+
+			<span class="hljs-keyword">if</span>( arr[mid] === mid )
+				<span class="hljs-keyword">return</span> mid;
+			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( arr[mid] &lt; mid )
+				start = mid + <span class="hljs-number">1</span>;
+			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( arr[mid] &gt; mid )
+				end = mid - <span class="hljs-number">1</span>;
+		}
+
+		<span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+	}
+
+	<span class="hljs-keyword">var</span> magicIndex = checkMagic(<span class="hljs-number">0</span>, arr.length-<span class="hljs-number">1</span>, arr);
+
+	console.log(magicIndex, (magicIndex&gt;=<span class="hljs-number">0</span>) ? arr[magicIndex] : <span class="hljs-string">"none"</span>);</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-3">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <h2 id="non-distinct-array-elements">Non-Distinct Array elements</h2>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> brr = [-<span class="hljs-number">10</span>, -<span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>];
+
+	<span class="hljs-keyword">var</span> checkMagicNonDistinct = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( start, end, arr )</span>{</span>
+
+		<span class="hljs-keyword">if</span>(end &lt; start || start &lt; <span class="hljs-number">0</span> || end &gt;= arr.length ) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+
+		<span class="hljs-keyword">var</span> mid = <span class="hljs-built_in">Math</span>.floor(( start + end ) / <span class="hljs-number">2</span>);
+		<span class="hljs-keyword">var</span> midVal = arr[mid];
+		<span class="hljs-keyword">if</span>( midVal === mid ) <span class="hljs-keyword">return</span> mid;
+
+		<span class="hljs-keyword">var</span> left = checkMagicNonDistinct( start, <span class="hljs-built_in">Math</span>.min(mid - <span class="hljs-number">1</span>, midVal), arr);
+		<span class="hljs-keyword">if</span>( left &gt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> left;
+
+		<span class="hljs-keyword">var</span> right = checkMagicNonDistinct( <span class="hljs-built_in">Math</span>.max(mid + <span class="hljs-number">1</span>, midVal), end, arr);
+		<span class="hljs-keyword">return</span> right;
+	}
+
+	<span class="hljs-keyword">var</span> magicIndex2 = checkMagicNonDistinct( <span class="hljs-number">0</span>, brr.length-<span class="hljs-number">1</span>, brr);
+
+	console.log(magicIndex2, (magicIndex2 &gt;= <span class="hljs-number">0</span>) ? brr[magicIndex2] : <span class="hljs-string">'none'</span>);
+
+})();</pre></div></div>
+        
+    </li>
+    
+</ul>

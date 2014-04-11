@@ -1,0 +1,181 @@
+<ul class="sections">
+    
+    
+    
+    <li id="section-1">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          <h1 id="html5-features">HTML5 Features</h1>
+<h2 id="new-doctype">New Doctype</h2>
+<p>Browsers that do not undertand this doctype, such as IE6 will simply render the contained markup in standards mode.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>&lt;!DOCTYPE html PUBLIC <span class="hljs-string">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span>
+    <span class="hljs-string">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"</span>&gt;
+    
+<span class="xml"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+
+</span></pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-2">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <h2 id="semantic-header-and-footer-">Semantic <code>Header</code> and <code>Footer</code></h2>
+<p>No longer have to use divs with ids, which by nature are non-semantic. Now, with HTML5, we have access to the <header> and <footer> elements. The mark-up above can now be replaced with:</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>&lt;header&gt;
+    ...
+&lt;/header&gt;
+ 
+&lt;footer&gt;
+    ...
+&lt;/footer&gt;
+
+&lt;articles /&gt; ... &lt;section /&gt;</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-3">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <h2 id="custom-data-attribute">Custom Data Attribute</h2>
+<p>As long as we preface our custom attribute with “data,” we can officially use this method.
+Especially useful for attaching important data to a DOM element for javascript usage. </p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>&lt;div id="myDiv" data-custom-attr="My Value"&gt; Bla Bla &lt;/div&gt;
+
+var theDiv = document.getElementById('myDiv');
+var attr = theDiv.getAttribute('data-custom-attr');</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-4">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-4">&#182;</a>
+          </div>
+          <h2 id="local-storage">Local Storage</h2>
+<p>Useful for creating apps that can save state locally. Thanks to local storage (not officially HTML5, but grouped in for convenience’s sake), we can make advanced browsers “remember” what we type, even after the browser is closed or is refreshed.
+<br/>Internet Explorer 8, Safari 4, and Firefox 3.5.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre><span class="hljs-keyword">if</span>(window.localStorage)</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-5">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-5">&#182;</a>
+          </div>
+          <h2 id="video-and-audio-support">Video and Audio Support</h2>
+<p>No longer do we have to rely upon third party plugins in order to render video and play audio. HTML5 now offers the <code>&lt;audio&gt;</code> and <code>&lt;video&gt;</code> element</p>
+<h2 id="placeholders">Placeholders</h2>
+<p>Before, we had to utilize a bit of JavaScript to create placeholders for textboxes. Sure, you can initially set the value attribute how you see fit, but, as soon as the user deletes that text and clicks away, 
+the input will be left blank again. The placeholder attribute remedies this.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>&lt;input name=<span class="hljs-string">"email"</span> type=<span class="hljs-string">"email"</span> placeholder=<span class="hljs-string">"Placeholder text goes here"</span> /&gt;</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-6">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-6">&#182;</a>
+          </div>
+          <h2 id="content-editable">Content Editable</h2>
+<p>The new browsers have a nifty new attribute that can be applied to elements, called contenteditable. As the name implies, this allows the user to edit any of the text contained within the element, including its children. <br/>
+There are a variety of uses for something like this, including an app as simple as a to-do list, which also takes advantage of local storage.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>&lt;!DOCTYPE html&gt;
+ 
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>untitled<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span> To-Do List <span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">contenteditable</span>=<span class="hljs-value">"true"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span> Break mechanical cab driver. <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span> Drive to abandoned factory
+        <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span> Watch video of self <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</span></pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-7">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <h2 id="figure-element">Figure Element</h2>
+<p>Currenlty there is no easy or semantic way to associate the caption, wrapped in a paragraph tag, with the image element itself.
+The <code>figure</code> element combined with the <code>figcaption</code> element can now semantically associate captions with their image counterparts.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>&lt;figure&gt;
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"path/to/image"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">"About image"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">figcaption</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>This is an image of something interesting. <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">figcaption</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">figure</span>&gt;</span>
+
+</span></pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-8">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-8">&#182;</a>
+          </div>
+          <h2 id="no-more-types-for-scripts-and-links">No More <code>Types</code> for Scripts and Links</h2>
+<p>This is no longer necessary. It’s implied that both of these tags refer to stylesheets and scripts, respectively. As such, we can remove the type attribute all together.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>&lt;link rel=<span class="hljs-string">"stylesheet"</span> href=<span class="hljs-string">"path/to/stylesheet.css"</span> /&gt;
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"path/to/script.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</span></pre></div></div>
+        
+    </li>
+    
+</ul>

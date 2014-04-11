@@ -1,0 +1,139 @@
+<ul class="sections">
+    
+    
+    
+    <li id="section-1">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          <h1 id="longest-common-subsequence">Longest Common Subsequence</h1>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-2">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <h3 id="optimal-substructure">Optimal Substructure</h3>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-3">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <p>Let the input sequences be <code>X[0..m-1]</code> and <code>Y[0..n-1]</code> of lengths m and n respectively. And let <code>L(X[0..m-1], Y[0..n-1])</code> be the length of LCS of the two sequences X and Y. Following is the recursive definition of <code>L(X[0..m-1], Y[0..n-1])</code>.</p>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-4">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-4">&#182;</a>
+          </div>
+          <p>If last characters of both sequences match or <code>X[m-1] == Y[n-1]</code> then<br/>
+<code>L(X[0..m-1], Y[0..n-1]) = 1 + L(X[0..m-2], Y[0..n-2])</code></p>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-5">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-5">&#182;</a>
+          </div>
+          <p>If last characters of both sequences do not match or <code>X[m-1] != Y[n-1]</code> then <br/>
+<code>L(X[0..m-1], Y[0..n-1]) = MAX ( L(X[0..m-2], Y[0..n-1]), L(X[0..m-1], Y[0..n-2])</code></p>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-6">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-6">&#182;</a>
+          </div>
+          <h3 id="simple-recursion">Simple Recursion</h3>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>
+	<span class="hljs-keyword">var</span> lcs = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(a, b)</span>{</span>
+
+		<span class="hljs-keyword">var</span> lcsInner = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(a, b, m, n)</span>{</span>
+
+			<span class="hljs-keyword">if</span>(m == <span class="hljs-number">0</span> || n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+
+			<span class="hljs-keyword">if</span>(a[m-<span class="hljs-number">1</span>] == b[n-<span class="hljs-number">1</span>]) 
+				<span class="hljs-keyword">return</span> (<span class="hljs-number">1</span> + lcsInner(a, b, m-<span class="hljs-number">1</span>, n-<span class="hljs-number">1</span>));
+			<span class="hljs-keyword">else</span> 
+				<span class="hljs-keyword">return</span> ( <span class="hljs-built_in">Math</span>.max( lcsInner( a, b, m-<span class="hljs-number">1</span>, n ), lcsInner( a, b, m, n-<span class="hljs-number">1</span> ) ) );
+		}
+
+		<span class="hljs-keyword">return</span> lcsInner(a,b,a.length,b.length);
+	}</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-7">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <h3 id="dynamic-programming-using-tabulation-bottom-up-">Dynamic Programming using Tabulation (Bottom Up)</h3>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>
+	<span class="hljs-keyword">var</span> lcsdp = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(a,b)</span>{</span>
+
+		<span class="hljs-keyword">var</span> m = a.length, n = b.length;
+		<span class="hljs-keyword">var</span> l = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(m+<span class="hljs-number">1</span>);
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt;=m; i++){
+			l[i] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(n+<span class="hljs-number">1</span>);
+		}
+
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i &lt;=m; i++){
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> j=<span class="hljs-number">0</span>; j&lt;=n; j++){
+				<span class="hljs-keyword">if</span>(i == <span class="hljs-number">0</span> || j == <span class="hljs-number">0</span>){
+					l[i][j] = <span class="hljs-number">0</span>;
+				}
+				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a[i-<span class="hljs-number">1</span>] == b[j-<span class="hljs-number">1</span>]){
+					l[i][j] = l[i-<span class="hljs-number">1</span>][j-<span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;
+				}
+				<span class="hljs-keyword">else</span>{
+					l[i][j] = <span class="hljs-built_in">Math</span>.max(l[i-<span class="hljs-number">1</span>][j], l[i][j-<span class="hljs-number">1</span>]);				
+				}
+
+			}
+		}
+		<span class="hljs-keyword">return</span> l[m][n];
+	}</pre></div></div>
+        
+    </li>
+    
+</ul>

@@ -1,0 +1,148 @@
+<ul class="sections">
+    
+    
+    
+    <li id="section-1">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          <h1 id="find-missing-integer-among-a-billion">Find Missing Integer among A Billion</h1>
+<div class="question-item">
+Given an input file with four billion non-negative integers, provide an algorithm to generate an integer which is not contained in the file. Assume you have 1 GB of memory available for this task.</div>
+</div>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-2">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <h2 id="using-a-bit-vector">Using a Bit Vector</h2>
+<p>We have 4 billion integers, which is &lt;= 2^32. 1GB of memory spans out to 8*10^9 bits or 8 billion bits. Therefore, we have enough memory to map each of the 4 billion distinct integers within memory using 1 bit each.</p>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-3">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <ul>
+<li>Create a Bit Vector with 4 billion bits. A Bit Vector may be an array that stores boolean values compactly.</li>
+<li>Initialize each bit in the Bit Vector to 0.</li>
+<li>First scan through all the numbers and set the corresponding bit in the Bit Vector to 1.</li>
+<li>We then scan the Bit Vector starting at the 0th index and return the first bit that is set to 0.</li>
+</ul>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-4">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-4">&#182;</a>
+          </div>
+          <p><b></b></p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">var</span> numInts = <span class="hljs-built_in">Number</span>.MAX_VALUE;
+<span class="hljs-keyword">var</span> BitVector = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(numInts/<span class="hljs-number">32</span>); <span class="hljs-comment">// Integers are 32 bits in javascript</span></pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-5">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-5">&#182;</a>
+          </div>
+          <p>Initialize all values in the Bit Vector to 0</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt;BitVector.length; i++){
+	BitVector[i] = <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setBit</span><span class="hljs-params">(n)</span>{</span>
+	BitVector[n/<span class="hljs-number">32</span>] |= <span class="hljs-number">1</span> &lt;&lt; (n % <span class="hljs-number">32</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getBit</span><span class="hljs-params">(n)</span>{</span>
+	BitVector[n/<span class="hljs-number">32</span>] &amp; ( <span class="hljs-number">1</span> &lt;&lt; (n % <span class="hljs-number">32</span>) );
+}</pre></div></div>
+        
+    </li>
+    
+    
+    <li id="section-6">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-6">&#182;</a>
+          </div>
+          <p><div class="question-item">
+What if we had only 10mb memory?
+</div></p>
+<h2 id="dividing-the-data-into-blocks-br-">Dividing the data into Blocks <br/></h2>
+<p>We can divide the integers into blocks of some size and then apply the Bit Vector approach to detect a missing interger within the block. 
+Since all values are distinct we will know exactly how many values are expected in a given block. Say, for a block size of 1000, we count 
+how many values are between 0 and 999, 1000 and 1999, etc and return if we are counting only 999 values ina given block.</p>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-7">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <p>To select a block size:</p>
+
+        </div>
+        
+    </li>
+    
+    
+    <li id="section-8">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-8">&#182;</a>
+          </div>
+          <ul>
+<li>Let <code>rangeSize</code> denote the size of the ranges of each block.</li>
+<li>Let <code>arraySize</code> represent the number of blocks, such that <code>arraySize = 2^31 / rangeSize</code>, since there are <code>2^31</code> non-negative integers.</li>
+<li>Now, to find the minimum rangeSize, let’s assume all blocks are in memory and each block is represented by an integer which is 4 bytes (32 bits). Since, we have 10 MB (<code>2^23</code> bytes) of memory, we can hold atmost <code>2^32 / 4 = 2^21</code> elements.
+<code>arraySize = 2^31 / rangeSize &lt;= 2^21</code>
+<code>rangeSize &gt;= 2^31 / 2^21</code>
+<code>rangeSize &gt;= 2^10</code></li>
+<li>For an upperbound, we know we have <code>2^23</code> bytes of memory, or <code>2^26</code> bits, allowing us the capability to map upto <code>2^26</code> distinct numbers. Thus:
+<code>2^10 &lt;= rangeSize &lt;= 2^26</code> </li>
+</ul>
+
+        </div>
+        
+    </li>
+    
+</ul>
