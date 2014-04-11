@@ -193,7 +193,7 @@
 		},
 		handleMatchSelect: function(page){
 			var that = this;
-			getFile('/data/'+page, function(e){
+			getFile('data/'+page, function(e){
 				that.setState({data: e.target.responseText})
 			});
 		},
