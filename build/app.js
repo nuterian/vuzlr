@@ -56,7 +56,7 @@
 			keys = Object.keys(keymap).sort();
 		}
 
-		getFile("/data/map.json", function(e){
+		getFile("data/map.json", function(e){
 			map = JSON.parse(e.target.responseText);
 		});
 
@@ -167,17 +167,14 @@
 
 		render: function(){
 			return (
-				//<form className="searchForm"  >
 				React.DOM.div( {className:"search-form"}, 
 					React.DOM.input( {className:"search-input", type:"text", placeholder:"Enter keywords...", onKeyUp:this.handleKeyUp, onKeyDown:this.handleKeyDown, ref:"query"} ),
 					MatchList( {data:this.state.data} )
-				)
-				//</form>			
+				)		
 			);
 		}
 	});
 	
-	//var markdowner = new Showdown.converter();
 	var ArticleBox = React.createClass({displayName: 'ArticleBox',
 		render: function(){
 			var rawMarkup = this.props.data;
