@@ -233,8 +233,8 @@ ul.sections > li > div {
   }
 
   ul.sections > li > div.annotation {
-    max-width: 270px;
-    min-width: 270px;
+    max-width: 310px;
+    min-width: 310px;
     min-height: 5px;
     padding: 13px;
     overflow-x: hidden;
@@ -292,8 +292,8 @@ ul.sections > li > div {
     width:510px;
   }
   ul.sections > li > div.annotation {
-    max-width: 510px;
-    min-width: 510px;
+    max-width: 560px;
+    min-width: 560px;
     padding: 10px 25px 1px 0;
   }
   ul.sections > li > div.content {
@@ -309,9 +309,8 @@ ul.sections > li > div {
     width:690px;
   }
   ul.sections > li > div.annotation {
-    max-width: 720px;
-    min-width: 720px;
-    width: 720px;
+    max-width: 760px;
+    min-width: 760px;
   }
   ul.sections > li > div.content {
     padding: 9px 15px 16px 25px;

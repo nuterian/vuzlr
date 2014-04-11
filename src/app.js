@@ -4,15 +4,33 @@
 
 (function(){
 
-Number.prototype.mod = function (n) {
-    return ((this % n) + n) % n;
-}
+	Number.prototype.mod = function (n) {
+	    return ((this % n) + n) % n;
+	}
 
 	var getFile = function(fileName, callback){
 		var req = new XMLHttpRequest();
 		req.onload = callback;
 		req.open("GET", fileName, true);
 		req.send();
+	}
+	
+	function debounce(eventHandler, delay) {
+
+	  	var timer;
+
+		var anotherFunction = function(){
+
+			var ctx = this, args = arguments;
+		  	clearTimeout(timer);
+		 
+			timer = setTimeout(function(){
+				timer = null;
+				eventHandler.apply(ctx, args);
+			}, delay);
+		}
+	  
+	  	return anotherFunction;
 	}
 
 	var QueryProcessor = function(){
@@ -40,23 +58,7 @@ Number.prototype.mod = function (n) {
 
 		getFile("/data/map.json", function(e){
 			map = JSON.parse(e.target.responseText);
-			//generateKeyMap();
 		});
-
-		//function find()
-
-		function findTitles(q){
-
-		}
-
-		function findKeywords(q){
-
-			for(var i=0; i<keys; i++){
-				if(keys[i].indexOf(q) >= 0){
-
-				}
-			}
-		}
 
 		return  {
 			query: function(q){
@@ -114,6 +116,7 @@ Number.prototype.mod = function (n) {
 		curMatch: -1,
 
 		getInitialState: function(){
+			this.debouncedTextInput = debounce(this.handleTextInput, 500);
 			return {data: []};
 		},
 
@@ -133,6 +136,16 @@ Number.prototype.mod = function (n) {
 			}
 		},
 
+		handleTextInput: function(){
+			if(this.curMatch >= 0) this.matches[this.curMatch].selected = false;
+			this.curMatch = -1;
+
+			var q = this.refs.query.getDOMNode().value.trim();
+			if(!q) this.matches = [];
+			else this.matches = QP.query(q);
+			this.setState({data: this.matches});
+		},
+
 		handleKeyUp: function(e){
 
 			if(e.keyCode == 38 || e.keyCode == 40){}
@@ -142,13 +155,7 @@ Number.prototype.mod = function (n) {
 				this.setState({data: []});
 			}
 			else{
-				if(this.curMatch >= 0) this.matches[this.curMatch].selected = false;
-				this.curMatch = -1;
-
-				var q = this.refs.query.getDOMNode().value.trim();
-				if(!q) this.matches = [];
-				else this.matches = QP.query(q);
-				this.setState({data: this.matches});
+				this.debouncedTextInput();
 			}
 
 			return false;
