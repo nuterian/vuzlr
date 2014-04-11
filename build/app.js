@@ -56,7 +56,11 @@
 			keys = Object.keys(keymap).sort();
 		}
 
+<<<<<<< HEAD
 		getFile("data/map.json", function(e){
+=======
+		getFile("../data/map.json", function(e){
+>>>>>>> 911a484422cffdb9e110838177fda1a78ed027ff
 			map = JSON.parse(e.target.responseText);
 		});
 
